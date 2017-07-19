@@ -1,26 +1,26 @@
 function [X,delta,T_term] = admm_imb(As,K,alpha, opts)
-%{
-ADMM for solving the following SDP of unequal sized clustering
-max  trace(AX)
-s.t. X\succeq 0, X1=1, tr(X)\le k, 0\le X\le \alpha
-Input: 
-    As: adjacency matrix
-    K: number of clusters
-    alpha: elementwise upper bound in the SDP
-    opts: options
-        rho: learning rate of ADMM
-        T:   max iteration
-        quiet: whether to print result at each step
-        tol: tolerance for stopping criterion
-        report_interval: frequency to print intermediate result
-        r: expected rank of the solution, leave blank if no constraint is required.
-Output:
-    X: optmal solution
-    delta: relative error when converge
-    T_term: number of iteration taken to converge
-Author: Bowei Yan
-Last Updated: Jun 13, 2017
-%}
+%
+% ADMM for solving the following SDP of unequal sized clustering
+% max  trace(AX)
+% s.t. X\succeq 0, X1=1, tr(X)=k, 0\le X\le \alpha
+% Input: 
+%     As: adjacency matrix
+%     K: number of clusters
+%     alpha: elementwise upper bound in the SDP
+%     opts: options
+%         rho: learning rate of ADMM
+%         T:   max iteration
+%         quiet: whether to print result at each step
+%         tol: tolerance for stopping criterion
+%         report_interval: frequency to print intermediate result
+%         r: expected rank of the solution, leave blank if no constraint is required.
+% Output:
+%     X: optmal solution
+%     delta: relative error when converge
+%     T_term: number of iteration taken to converge
+% Author: Bowei Yan
+% Last Updated: Jul 18, 2017
+%
 n = size(As,1);
 [U,V] = deal(zeros(n));
 
